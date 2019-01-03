@@ -1,6 +1,6 @@
 ---
 title: iOS Environment variables
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:38:24
 tags:
 ---
 

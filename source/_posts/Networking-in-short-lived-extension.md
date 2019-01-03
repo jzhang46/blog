@@ -1,6 +1,6 @@
 ---
 title: Networking in short lived extension
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:42:24
 tags:
 ---
 

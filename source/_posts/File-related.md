@@ -1,6 +1,6 @@
 ---
 title: File related
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:36:24
 tags:
 ---
 
@@ -12,6 +12,8 @@ fcntl(fd, F_NOCACHE, 1)
 ```
 
 `F_GLOBAL_NOCACHE`是直接将所有对此文件的访问都置为NO cache，但好像现在行为是跟`F_NOCACHE`是一样的。
+
+<!-- more -->
 
 原贴地址：
 https://forums.developer.apple.com/thread/25464

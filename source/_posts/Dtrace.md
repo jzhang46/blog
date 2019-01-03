@@ -1,6 +1,6 @@
 ---
 title: dtrace
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:35:24
 tags:
 ---
 
@@ -11,6 +11,8 @@ $ sudo dtrace -n 'proc:::signal-send /pid/ { printf("%s -%d %d",execname,args[2]
 
 $ sudo dtrace -n 'proc:::exec-success { printf("%Y %s\n",walltimestamp,curpsinfo->pr_psargs); ustack(); }'
 ```
+
+<!-- more -->
 
 ### DTrace参考资料:
 > Hooked on DTrace part1,2,3,4: http://blog.bignerdranch.com/category/dtrace/

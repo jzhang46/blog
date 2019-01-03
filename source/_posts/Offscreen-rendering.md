@@ -1,6 +1,6 @@
 ---
 title: Offscreen rendering
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:46:24
 tags:
 ---
 
@@ -17,6 +17,8 @@ tags:
     - CALayers with corner radius
 
     Performance penalty: context switch from on-screen drawing to off-screen drawing
+ 
+<!-- more -->
  
 >
 > 原贴：

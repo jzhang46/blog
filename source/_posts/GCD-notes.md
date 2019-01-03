@@ -1,6 +1,6 @@
 ---
 title: GCD notes
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:37:24
 tags:
 ---
 
@@ -30,6 +30,8 @@ dispatch_apply(DISPATCH_APPLY_AUTO, 1000, ^(size_t i) { … }
 | Available types | os_unfair_lock | pthread_mutex_t, NSLock, DispatchQueue.sync |
 | Contended lock re-aquisition | Can steal the lock | Context switches to next waiter |
 | Subject to waiter starvation | Yes | No |
+
+<!-- more -->
 
 * Lock ownership:
 

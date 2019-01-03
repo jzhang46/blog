@@ -1,6 +1,6 @@
 ---
 title: Clang attributes & Xcode project settings
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:31:24
 tags:
 ---
 
@@ -27,6 +27,8 @@ _Pragma("clang diagnostic pop")
 #define OCPACK_METHOD \
 __attribute__((ocslite))
 ```
+
+<!-- more -->
 
 ### 错误解决：Cannot specify -o when generating multiple output files
 ```

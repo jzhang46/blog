@@ -6,6 +6,8 @@ tags:
 
 因为“众所周知的原因”，dlsym不能在运行时调用任意传入的参数，为避开这一限制，可使用如下动态查找dlsym的机制：
 
+<!-- more -->
+
 * 首先在代码中调用dlsym并传入一个常量字符串，如dlsym("CFRelease")，并设定调用函数的优化选项并且不支持thumb-mode，以保证跳转到dlsym的指令与helper_method的函数起始地址保持不变
 
 ```objc
@@ -69,9 +71,9 @@ SYM_FUNC_POINTER_TYPE get_dlsym_addr() {
 
 
 > 例：上例中指令内容为`0x13010094`，按字节序为`0x94000113`，其二进制为:
-> ![arm64_bl_dlsym_example](pics/arm64_bl_dlsym_example.png)
+> ![arm64_bl_dlsym_example](/pics/arm64_bl_dlsym_example.png)
 > arm64平台bl指令的格式为：
-> ![arm64_bl_instruction](pics/arm64_bl_instruction.png)
+> ![arm64_bl_instruction](/pics/arm64_bl_instruction.png)
 > 得到其pc relative offset为`0x113 * 4 = 0x44c`，则 dlsym的地址=`0x100006458` + `0x44c`
 
 

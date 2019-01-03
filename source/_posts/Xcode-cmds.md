@@ -37,6 +37,8 @@ $xcrun --sdk iphoneos --show-sdk-path
 例：/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.1.sdk
 ```
 
+<!-- more -->
+
 ### 2. System commands   
 
 ```

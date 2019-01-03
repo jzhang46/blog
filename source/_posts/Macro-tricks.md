@@ -1,6 +1,6 @@
 ---
 title: Macro tricks
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:40:24
 tags:
 ---
 

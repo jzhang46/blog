@@ -1,6 +1,6 @@
 ---
 title: Bit operations
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:30:24
 tags:
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Objective C related
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:45:24
 tags:
 ---
 
@@ -13,6 +13,8 @@ static inline Class _isa( NSObject *obj) {
     return( ((struct { @defs( NSObject) } *) obj)->isa);
 }
 ```
+
+<!-- more -->
 
 ### NSSelectorFromString(@"aaa")
 * Internally calls `sel_registerName("aaa")`;

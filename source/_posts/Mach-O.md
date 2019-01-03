@@ -1,6 +1,6 @@
 ---
 title: Mach-O
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:39:24
 tags:
 ---
 
@@ -16,6 +16,8 @@ $ xcrun dyldinfo -rebase -bind -lazy_bind <YOUR_APP> //show what dyld need to do
 ```sh
 $ xcrun dyldinfo -dylibs <YOUR_APP> 
 ```
+
+<!-- more -->
 
 ### 4. Other cmds
 ```sh

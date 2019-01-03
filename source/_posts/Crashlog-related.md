@@ -1,6 +1,6 @@
 ---
 title: Crashlog related
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:32:24
 tags:
 ---
 
@@ -9,7 +9,9 @@ tags:
 
 * Not mentioned in WWDC 2018 session 414: 
     * Another malloc free list signature is a bad address 0x…bead; 0x…bec0 and 0x…bec8 are common in objc_msgSend due to masking and offsets. That value is a remnant of the malloc free list encoding by he nanozone allocator on some platforms.
-    * 
+    
+
+<!-- more -->
 
 
 ### EXC_GUARD exception

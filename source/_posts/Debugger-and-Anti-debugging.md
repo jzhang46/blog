@@ -1,6 +1,6 @@
 ---
 title: Debugger & Anti-debugging
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:33:24
 tags:
 ---
 
@@ -20,6 +20,8 @@ typedef int (*ptrace_ptr)(int request, pid_t pid, caddr_t addr, void *data);
     dlclose(handle);
 }
 ```
+
+<!-- more -->
 
 - 使用sysctl
 ```objc

@@ -1,6 +1,6 @@
 ---
 title: NSURLSession background session details
-date: 2018-12-13 09:29:24
+date: 2018-12-13 09:44:24
 tags:
 ---
 
