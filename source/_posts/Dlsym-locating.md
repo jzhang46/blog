@@ -8,7 +8,7 @@ tags:
 
 <!-- more -->
 
-* 首先在代码中调用dlsym并传入一个常量字符串，如dlsym("CFRelease")，并设定调用函数的优化选项并且不支持thumb-mode，以保证跳转到dlsym的指令与helper_method的函数起始地址保持不变
+* 首先在待上线的代码中调用dlsym并传入一个常量字符串，如dlsym("CFRelease")，并设定调用函数的优化选项并且不支持thumb-mode，以保证跳转到dlsym的指令与helper_method的函数起始地址保持不变，如下例：
 
 ```objc
 __attribute__((noinline, optnone, target("no-thumb-mode"))) static void *helper_method() {
@@ -38,7 +38,7 @@ static inline uint16_t getOffsetFromHelperMethod() {
 }
 ```
 
-* 根据指令地址取此指令内容，进行decode，得到dlsym目标地址相对于bl/call指令IP的偏移，并根据不同平台的换算方式算出dlsym的目标地址（此实现依赖于不同平台上相应的bl/call指令的实现）
+* 根据指令地址取此指令的内存内容，进行decode，得到dlsym目标地址相对于bl/call指令IP的偏移，并根据不同平台的换算方式算出dlsym的目标地址（此实现依赖于不同平台上相应的bl/call指令的实现）
 
 具体实现如下：
 
