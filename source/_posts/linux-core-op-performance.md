@@ -4,7 +4,6 @@ date: 2019-11-13 18:25:17
 tags:
 ---
 
-
 * KPTI: Kernel page-table isolation 内核页表隔离
     * 解决 melt down 漏洞
     * 完全分离用户空间和内核空间页表来解决页表泄露
