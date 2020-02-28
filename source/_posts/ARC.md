@@ -1,5 +1,5 @@
 ---
-title: ObjC ARC
+title: ObjC ARC Internals
 date: 2019-05-07 10:57:01
 tags:
 ---
@@ -8,7 +8,7 @@ tags:
 
 <!-- more -->
 
-![ARC specification](/pics/ARC_spec.png)
+![ARC specification](/pics/ARC_spec.png) 
 
 ![ARC AST](/pics/ARC_AST.png)
 
