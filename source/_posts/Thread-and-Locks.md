@@ -27,6 +27,81 @@ The prio-donation/QoS is intended to improve front app responsiveness.
 
 <!-- more -->
 
+### 1.5 propagating QoS and priorities, what does that mean?
+
+* 原贴地址：https://twitter.com/pedantcoder/status/1229999590482444288
+
+``` objc
+
+QoS is a label, its rules of propagation are semi complex, but DO NOT depend on the state of the system.
+
+It's propagated by only 2 mechanisms (and anything built atop of it), and one secondary obsolete subsystem.
+
+mechanism 1: dispatch_async
+mechanism 2: XPC based IPC
+
+the obsolete mechanism is manual pthread overrides, I will (almost) not cover them.
+
+THAT'S IT
+
+the propagation rules are somwhat complex (hi 
+@jondrummond
+) but are a strict function of :
+- the current QoS of the initiator thread,
+- how you formed your dispatch_block() if using dispatch_block_create()
+- the various QoS and labels of the queue you async/IPC to.
+
+These are used to inform the scheduler following various levels of policies what priority your work item should run at.
+
+</ the end for QoS>
+
+Now if you _never_ wait on items synchronously that would be the end of the story, but sometimes you do, and now you enter a different world: scheduler priorities.
+
+QoS will feed into the very complex scheme that gives you a priority but is only one aspect.
+
+When waiting on some work, if your current priority is higher than the one of the thread running (or about to run) the work you wait on, this is called a "priority inversion".
+
+macOS/iOS is a complex layer of tons of different priorities, leaving to chance is a bad idea.
+
+so the OS provides measures called "priority inversion avoidance" built into a families of synchornization primitives. The way it works can be really summed up in a single sentence: when you block waiting, if the OS can know who you're blocked by, it may resolve inversions.
+
+if it can't know, then it can't know who to apply your priority Mojo to and well, the only option is wait and hope for the best.
+
+So what you need for priority inversion to kick in, is a wait primitive that has ownership information, IO primitives that record ownership
+
+The list is pretty short:
+- pthread mutexes and os unfair locks (and things built on top)
+- dispatch_sync() (but for reasons not onto the main queue, but that doesn't matter for apps)
+- xpc_connection_send_with_message_sync() (with several caveats that don't fit on Twitter)
+...
+
+and that's it.
+
+now back to the original question:
+- a semaphore is not an "async" operation, so QoS is _not_ related to it. in any way.
+- when you call *_semaphore_wait()  the OS has no idea who will call the matching *_semaphore_signal() and hence has no ownership info.
+
+a group is essentially a semaphore with a different counting scheme: if you enter() you don't know who will leave().
+
+that ends with the answer to the question you meant to ask "does groups have priority inversion avoidance" and the answer is "no because it has no ownership"
+
+lastly, dispatch_block_wait() for historical reasons was implemented on top of QoS override (the now obsolete 3rd mechanism I mentionned).
+
+Unlike priority inversion avoidance that works through multi-hop chains through _very_ cool technology (look for turnstiles in XNU)...
+
+dispatch_block_wait() isn't multi-hop. It works for the main thread to wait in certain circumstances (if what you wait on has been asynced _before_ you start to wait on is an important one), because in an app it's the highest priority you can have,....
+
+.. so the likelyhood of requiring more than 1 hop to resolve an inversion is super low. It doesn't work nearly as well in other cases, for which a better pattern is to share a lock around your work, and have the waiter take that lock to see if the work was done or being done...
+
+... in which case the work will be boosted then. and if it hasn't been done yet, then do it yourself.
+
+Oh one last thing, I forgot, it's obvious to me but not readers, dispatch_once() is built on top of os_unfair_lock and admits an owner, and is priority inversion safe.
+
+</end>
+
+```
+
+
 ### 2. os_unfair_lock
 
 Run on my latest gen rMBP, max specs.
